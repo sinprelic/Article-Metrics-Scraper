@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-22T14:46:29Z",
+  "generated_at": "2026-11-22T15:45:36Z",
   "articles": {
     "biorxiv_support_cells": {
       "source": "biorxiv",
@@ -38,7 +38,7 @@
       "metrics_provider": "figshare_stats_and_openalex",
       "doi": "10.6084/m9.figshare.27994004",
       "article_url": "https://figshare.com/articles/journal_contribution/Supplementary_data_for_research_project_b_Expression_of_b_b_i_Drosophila_melanogaster_i_b_b_V-ATPases_in_olfactory_sensillum_support_cells_b_/27994004",
-      "views": 142,
+      "views": 143,
       "downloads": 69,
       "citations": 0
     },
