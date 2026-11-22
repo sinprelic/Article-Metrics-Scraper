@@ -16,8 +16,8 @@ from its manuscript page. Each scraper expects the source page to be publicly
 accessible and fails explicitly if the site blocks the request or changes its
 metrics markup.
 
-The MDPI scraper resolves the article DOI and reads its **Article views** count
-from the landing page.
+The MDPI scraper resolves the article DOI and reads its **Article views** and
+**Citations** counts from the landing page.
 
 The Figshare scraper reads **views** and **downloads** from Figshare's public
 Statistics API and **citations** from OpenAlex's DOI record. The article
@@ -112,7 +112,8 @@ contains one entry per configured article:
       "source": "mdpi",
       "doi": "10.3390/insects15121016",
       "article_url": "https://www.mdpi.com/2075-4450/15/12/1016",
-      "article_views": 0
+      "article_views": 0,
+      "citations": 0
     },
     "insects_vatpase_figshare_data_repo": {
       "source": "figshare",
@@ -142,6 +143,7 @@ JSON source and query one metric at a time:
 ![SSRN downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FOWNER%2FREPO%2FBRANCH%2Fdata%2Fmetrics.json&query=%24.articles.ssrn_stem_cells_epithelial_responders.downloads&label=SSRN%20downloads)
 ![SSRN abstract views](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FOWNER%2FREPO%2FBRANCH%2Fdata%2Fmetrics.json&query=%24.articles.ssrn_stem_cells_epithelial_responders.abstract_views&label=SSRN%20abstract%20views)
 ![MDPI article views](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FOWNER%2FREPO%2FBRANCH%2Fdata%2Fmetrics.json&query=%24.articles.insects_vatpase.article_views&label=Article%20views)
+![Citations](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FOWNER%2FREPO%2FBRANCH%2Fdata%2Fmetrics.json&query=%24.articles.insects_vatpase.citations&label=Citations&color=green)
 ![Figshare views](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FOWNER%2FREPO%2FBRANCH%2Fdata%2Fmetrics.json&query=%24.articles.insects_vatpase_figshare_data_repo.views&label=Figshare%20views)
 ![Figshare downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FOWNER%2FREPO%2FBRANCH%2Fdata%2Fmetrics.json&query=%24.articles.insects_vatpase_figshare_data_repo.downloads&label=Figshare%20downloads)
 ![Figshare citations](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FOWNER%2FREPO%2FBRANCH%2Fdata%2Fmetrics.json&query=%24.articles.insects_vatpase_figshare_data_repo.citations&label=Figshare%20citations)

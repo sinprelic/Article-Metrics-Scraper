@@ -5,15 +5,29 @@ from urllib.request import Request, urlopen
 
 
 _DOI = re.compile(r"^10\.3390/[A-Za-z0-9._/-]+$", re.IGNORECASE)
-_ARTICLE_VIEWS = re.compile(r"^article\s+views\s*:?\s*(\d+(?:,\d{3})*)$", re.IGNORECASE)
+_COUNT_PATTERN = r"(?:\d+|\d{1,3}(?:,\d{3})+)"
+_INLINE_METRICS = {
+    "article_views": re.compile(
+        rf"^article\s+views\s*:?\s*({_COUNT_PATTERN})$",
+        re.IGNORECASE,
+    ),
+    "citations": re.compile(
+        rf"^citations\s*:?\s*({_COUNT_PATTERN})$",
+        re.IGNORECASE,
+    ),
+}
+_METRIC_LABELS = {
+    "article_views": re.compile(r"^article\s+views\s*:?\s*$", re.IGNORECASE),
+    "citations": re.compile(r"^citations\s*:?\s*$", re.IGNORECASE),
+}
 _COUNT = re.compile(r"^(?:\d+|\d{1,3}(?:,\d{3})+)$")
 _OTHER_METRIC_LABEL = re.compile(
-    r"^(?:downloads?|citations?|abstract views?|pdf downloads?)\s*:?\s*$",
+    r"^(?:article\s+views?|downloads?|citations?|abstract views?|pdf downloads?)\s*:?\s*$",
     re.IGNORECASE,
 )
 
 
-class _ArticleViewsParser(HTMLParser):
+class _ArticleMetricsParser(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.text_chunks = []
@@ -36,26 +50,31 @@ class _ArticleViewsParser(HTMLParser):
 
 
 def parse_metrics_html(html):
-    parser = _ArticleViewsParser()
+    parser = _ArticleMetricsParser()
     parser.feed(html)
+    metrics = {}
 
     for index, chunk in enumerate(parser.text_chunks):
-        match = _ARTICLE_VIEWS.fullmatch(chunk)
-        if match:
-            count = match.group(1)
-            if not _COUNT.fullmatch(count):
-                raise ValueError(f"MDPI Article views count is invalid: {count!r}")
-            return {"article_views": int(count.replace(",", ""))}
+        for metric, pattern in _INLINE_METRICS.items():
+            match = pattern.fullmatch(chunk)
+            if match:
+                metrics[metric] = int(match.group(1).replace(",", ""))
 
-        if chunk.casefold().rstrip(":") != "article views":
-            continue
-        for value in parser.text_chunks[index + 1:index + 6]:
-            if _OTHER_METRIC_LABEL.fullmatch(value):
-                break
-            if _COUNT.fullmatch(value):
-                return {"article_views": int(value.replace(",", ""))}
+        for metric, pattern in _METRIC_LABELS.items():
+            if not pattern.fullmatch(chunk):
+                continue
+            for value in parser.text_chunks[index + 1:index + 6]:
+                if _OTHER_METRIC_LABEL.fullmatch(value):
+                    break
+                if _COUNT.fullmatch(value):
+                    metrics[metric] = int(value.replace(",", ""))
+                    break
 
-    raise ValueError("MDPI Article views count was not found")
+    for metric, label in (("article_views", "Article views"), ("citations", "Citations")):
+        if metric not in metrics:
+            raise ValueError(f"MDPI {label} count was not found")
+
+    return {"article_views": metrics["article_views"], "citations": metrics["citations"]}
 
 
 def scrape(article):
