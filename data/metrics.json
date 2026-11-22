@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-22T13:40:27Z",
+  "articles": {
+    "biorxiv_support_cells": {
+      "source": "biorxiv",
+      "doi": "10.1101/2021.10.04.463011",
+      "version": 1,
+      "article_url": "https://www.biorxiv.org/content/10.1101/2021.10.04.463011v1",
+      "abstract_views": 1944,
+      "full_text_views": 372,
+      "pdf_downloads": 824
+    },
+    "preprints_vatpase": {
+      "source": "preprints_org",
+      "doi": "10.20944/preprints202411.1965.v1",
+      "version": 1,
+      "article_url": "https://www.preprints.org/manuscript/202411.1965",
+      "downloads": 139,
+      "views": 113
+    },
+    "ssrn_stem_cells_epithelial_responders": {
+      "source": "ssrn",
+      "doi": "10.2139/ssrn.3485163",
+      "article_url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3485163",
+      "downloads": 64,
+      "abstract_views": 1533
+    },
+    "insects_vatpase": {
+      "source": "mdpi",
+      "doi": "10.3390/insects15121016",
+      "article_url": "https://www.mdpi.com/2075-4450/15/12/1016",
+      "article_views": 2330,
+      "article_views_as_of": "2026-11-20"
+    },
+    "insects_vatpase_figshare_data_repo": {
+      "source": "figshare",
+      "metrics_provider": "figshare_stats_and_openalex",
+      "doi": "10.6084/m9.figshare.27994004",
+      "article_url": "https://figshare.com/articles/journal_contribution/Supplementary_data_for_research_project_b_Expression_of_b_b_i_Drosophila_melanogaster_i_b_b_V-ATPases_in_olfactory_sensillum_support_cells_b_/27994004",
+      "views": 139,
+      "downloads": 68,
+      "citations": 0
+    },
+    "edmond_3_7m": {
+      "source": "edmond",
+      "doi": "10.17617/3.7M",
+      "article_url": "https://edmond.mpg.de/dataset.xhtml?persistentId=doi%3A10.17617%2F3.7M",
+      "downloads": 272
+    },
+    "edmond_3_9v6mom": {
+      "source": "edmond",
+      "doi": "10.17617/3.9V6MOM",
+      "article_url": "https://edmond.mpg.de/dataset.xhtml?persistentId=doi%3A10.17617%2F3.9V6MOM",
+      "downloads": 10
+    },
+    "edmond_3_ogrunx": {
+      "source": "edmond",
+      "doi": "10.17617/3.OGRUNX",
+      "article_url": "https://edmond.mpg.de/dataset.xhtml?persistentId=doi%3A10.17617%2F3.OGRUNX",
+      "downloads": 5
+    },
+    "cell_tiss_res_innexin": {
+      "source": "springer_nature",
+      "doi": "10.1007/s00441-024-03909-3",
+      "article_url": "https://link.springer.com/article/10.1007/s00441-024-03909-3",
+      "accesses": 4201,
+      "citations": 2
+    }
+  }
+}

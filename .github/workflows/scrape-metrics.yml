@@ -1,0 +1,58 @@
+name: Scrape article metrics
+
+on:
+  schedule:
+    - cron: "23 0 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Scrape immediately, regardless of the 48-hour interval
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: article-metrics-scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run tests
+        env:
+          PYTHONPATH: src
+        run: python -m unittest discover -s tests -v
+
+      - name: Scrape metrics
+        env:
+          PYTHONPATH: src
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force }}" = "true" ]; then
+            python -m article_metrics_scraper --force
+          else
+            python -m article_metrics_scraper --check-interval-hours 48
+          fi
+
+      - name: Commit updated metrics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/metrics.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update article metrics"
+            git push
+          else
+            echo "No metrics changes to commit."
+          fi

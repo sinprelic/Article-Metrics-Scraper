@@ -1,0 +1,51 @@
+{
+  "articles": [
+    {
+      "id": "biorxiv_support_cells",
+      "source": "biorxiv",
+      "doi": "10.1101/2021.10.04.463011",
+      "version": 1
+    },
+    {
+      "id": "preprints_vatpase",
+      "source": "preprints_org",
+      "doi": "10.20944/preprints202411.1965.v1"
+    },
+    {
+      "id": "ssrn_stem_cells_epithelial_responders",
+      "source": "ssrn",
+      "doi": "10.2139/ssrn.3485163"
+    },
+    {
+      "id": "insects_vatpase",
+      "source": "mdpi",
+      "doi": "10.3390/insects15121016"
+    },
+    {
+      "id": "insects_vatpase_figshare_data_repo",
+      "source": "figshare",
+      "doi": "10.6084/m9.figshare.27994004",
+      "article_url": "https://figshare.com/articles/journal_contribution/Supplementary_data_for_research_project_b_Expression_of_b_b_i_Drosophila_melanogaster_i_b_b_V-ATPases_in_olfactory_sensillum_support_cells_b_/27994004"
+    },
+    {
+      "id": "edmond_3_7m",
+      "source": "edmond",
+      "doi": "10.17617/3.7M"
+    },
+    {
+      "id": "edmond_3_9v6mom",
+      "source": "edmond",
+      "doi": "10.17617/3.9V6MOM"
+    },
+    {
+      "id": "edmond_3_ogrunx",
+      "source": "edmond",
+      "doi": "10.17617/3.OGRUNX"
+    },
+    {
+      "id": "cell_tiss_res_innexin",
+      "source": "springer_nature",
+      "doi": "10.1007/s00441-024-03909-3"
+    }
+  ]
+}
