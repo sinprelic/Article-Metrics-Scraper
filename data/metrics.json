@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-22T15:45:36Z",
+  "generated_at": "2026-11-22T17:33:06Z",
   "articles": {
     "biorxiv_support_cells": {
       "source": "biorxiv",
@@ -66,6 +66,14 @@
       "article_url": "https://link.springer.com/article/10.1007/s00441-024-03909-3",
       "accesses": 4201,
       "citations": 2
+    },
+    "human_colon_final_pub": {
+      "source": "frontiers",
+      "doi": "10.3389/fimmu.2025.1677943",
+      "article_url": "https://doi.org/10.3389/fimmu.2025.1677943",
+      "citations": 2,
+      "views": 4140,
+      "downloads": 695
     }
   }
 }

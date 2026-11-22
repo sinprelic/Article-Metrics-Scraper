@@ -7,13 +7,14 @@ import sys
 from urllib.error import URLError
 from urllib.request import HTTPError
 
-from .scrapers import biorxiv, edmond, figshare, mdpi, preprints_org, springer_nature, ssrn
+from .scrapers import biorxiv, edmond, figshare, frontiers, mdpi, preprints_org, springer_nature, ssrn
 
 
 _SCRAPERS = {
     "biorxiv": biorxiv.scrape,
     "edmond": edmond.scrape,
     "figshare": figshare.scrape,
+    "frontiers": frontiers.scrape,
     "mdpi": mdpi.scrape,
     "preprints_org": preprints_org.scrape,
     "springer_nature": springer_nature.scrape,

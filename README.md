@@ -29,6 +29,9 @@ the scraper's direct Python request during setup; if this blocks GitHub
 Actions too, the scraper reports the error rather than attempting to bypass
 the challenge.
 
+The Frontiers scraper reads **Citations**, **Views**, and **Downloads** from
+Frontiers' public article-totals API using the article number in its DOI.
+
 The EDMOND scraper reads the aggregate **Downloads** count from the dataset
 page's **Dataset Metrics** section. Dataverse's public API provides monthly
 Make Data Count metrics, not this aggregate count. The scraper does not work
