@@ -58,12 +58,49 @@ def _is_due(output_path, interval_hours, now):
     return now - timestamp >= timedelta(hours=interval_hours)
 
 
+def _load_previous_results(output_path):
+    if not output_path.exists():
+        return {}
+    with output_path.open(encoding="utf-8") as file:
+        existing = json.load(file)
+    results = existing.get("articles") if isinstance(existing, dict) else None
+    if not isinstance(results, dict):
+        raise ValueError(f"{output_path} has no valid articles object")
+    if any(not isinstance(result, dict) for result in results.values()):
+        raise ValueError(f"{output_path} contains an invalid article result")
+    return results
+
+
 def _write_metrics(output_path, articles, now):
+    previous_results = _load_previous_results(output_path)
     results = {}
+    failed_articles = []
+    successful_scrapes = 0
     for article in articles:
         article_id = article["id"]
         scraper = _SCRAPERS[article["source"]]
-        results[article_id] = scraper(article)
+        try:
+            results[article_id] = scraper(article)
+            successful_scrapes += 1
+        except (ValueError, RuntimeError, OSError) as error:
+            previous = previous_results.get(article_id)
+            if (
+                previous is not None
+                and previous.get("source") == article.get("source")
+                and previous.get("doi") == article.get("doi")
+            ):
+                results[article_id] = previous
+                retention = "retaining previous metrics"
+            else:
+                retention = "no matching previous metrics are available"
+            print(
+                f"Scrape warning for {article_id}: {error}; {retention}.",
+                file=sys.stderr,
+            )
+            failed_articles.append(article_id)
+
+    if successful_scrapes == 0:
+        raise RuntimeError("No article metrics were refreshed; existing output was left unchanged")
 
     output = {
         "schema_version": 1,
@@ -78,7 +115,16 @@ def _write_metrics(output_path, articles, now):
     finally:
         if temporary_path.exists():
             temporary_path.unlink()
-    print(f"Wrote metrics for {len(results)} article(s) to {output_path}")
+    print(
+        f"Wrote metrics for {successful_scrapes} of {len(articles)} configured article(s) "
+        f"to {output_path}"
+    )
+    if failed_articles:
+        print(
+            f"Completed with {len(failed_articles)} scraper warning(s); "
+            "previous metrics were retained where available.",
+            file=sys.stderr,
+        )
 
 
 def main(argv=None):

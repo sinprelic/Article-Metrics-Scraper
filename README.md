@@ -37,15 +37,18 @@ fails explicitly and the existing metrics file is left unchanged.
 
 The SSRN and Preprints.org pages rendered in the browser during setup, but
 direct HTTP requests from this environment received HTTP 403. The MDPI page
-also returned HTTP 403. GitHub Actions has now also received HTTP 403 from
-Preprints.org. When a publisher blocks a request, the job reports the failure
-and retains the previous `data/metrics.json` rather than bypassing the site's
-access controls.
+also returned HTTP 403. GitHub Actions has also received HTTP 403 from
+Preprints.org. When one scraper fails, the run logs a warning, retains that
+article's previous metrics when they match its source and DOI, and continues
+with the other scrapers. If no matching previous result exists, that article
+is omitted until a successful scrape. If every scraper fails, the existing
+`data/metrics.json` is left unchanged and the run exits with an error.
 
 The tracked configuration is in `config/articles.json`. Each entry has a
 unique ID, a scraper source, and the site's article identifier. The results
-are written to `data/metrics.json`; a failed scrape leaves the previous file
-unchanged and exits with an error.
+are written to `data/metrics.json`. When at least one scraper succeeds,
+`generated_at` records the time the refreshed metrics file was written;
+individual articles retained after a failure may contain older values.
 
 ## GitHub Actions
 
