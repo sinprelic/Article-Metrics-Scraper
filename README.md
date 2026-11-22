@@ -37,9 +37,10 @@ fails explicitly and the existing metrics file is left unchanged.
 
 The SSRN and Preprints.org pages rendered in the browser during setup, but
 direct HTTP requests from this environment received HTTP 403. The MDPI page
-also returned HTTP 403. GitHub Actions may also be blocked by these publishers;
-in that case the job will report the failed request and retain the previous
-`data/metrics.json` rather than bypassing the sites' access controls.
+also returned HTTP 403. GitHub Actions has now also received HTTP 403 from
+Preprints.org. When a publisher blocks a request, the job reports the failure
+and retains the previous `data/metrics.json` rather than bypassing the site's
+access controls.
 
 The tracked configuration is in `config/articles.json`. Each entry has a
 unique ID, a scraper source, and the site's article identifier. The results

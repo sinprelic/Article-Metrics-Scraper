@@ -4,7 +4,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 
-_DOI = re.compile(r"^10\.20944/(preprints\d{6}\.\d+)\.v(\d+)$", re.IGNORECASE)
+_DOI = re.compile(r"^10\.20944/preprints(\d{6}\.\d+)\.v(\d+)$", re.IGNORECASE)
 
 
 class _MetricsParser(HTMLParser):
