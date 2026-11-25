@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-22T17:33:06Z",
+  "generated_at": "2026-11-25T08:50:18Z",
   "articles": {
     "biorxiv_support_cells": {
       "source": "biorxiv",
       "doi": "10.1101/2021.10.04.463011",
       "version": 1,
       "article_url": "https://www.biorxiv.org/content/10.1101/2021.10.04.463011v1",
-      "abstract_views": 1944,
-      "full_text_views": 372,
-      "pdf_downloads": 824
+      "abstract_views": 1946,
+      "full_text_views": 377,
+      "pdf_downloads": 825
     },
     "preprints_vatpase": {
       "source": "preprints_org",
@@ -39,7 +39,7 @@
       "doi": "10.6084/m9.figshare.27994004",
       "article_url": "https://figshare.com/articles/journal_contribution/Supplementary_data_for_research_project_b_Expression_of_b_b_i_Drosophila_melanogaster_i_b_b_V-ATPases_in_olfactory_sensillum_support_cells_b_/27994004",
       "views": 143,
-      "downloads": 69,
+      "downloads": 71,
       "citations": 0
     },
     "edmond_3_7m": {
@@ -64,16 +64,16 @@
       "source": "springer_nature",
       "doi": "10.1007/s00441-024-03909-3",
       "article_url": "https://link.springer.com/article/10.1007/s00441-024-03909-3",
-      "accesses": 4201,
+      "accesses": 4226,
       "citations": 2
     },
     "human_colon_final_pub": {
       "source": "frontiers",
       "doi": "10.3389/fimmu.2025.1677943",
       "article_url": "https://doi.org/10.3389/fimmu.2025.1677943",
-      "citations": 2,
-      "views": 4140,
-      "downloads": 695
+      "citations": 3,
+      "views": 4166,
+      "downloads": 706
     }
   }
 }
